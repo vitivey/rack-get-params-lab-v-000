@@ -19,15 +19,22 @@ class Application
       @@cart.each do |cart|
         resp.write "#{cart}\n"
       end
+    elsif req.path.match(/add/)
+        search_term = req.params["item"]
+        if !@@items.include?(search_term)
+          @@cart << "#{search_term}"
+        resp.write "added #{search_term}" 
+      else
+        resp.write "We don't have that item"
+      end
     else
       resp.write "Path Not Found"
     end
 
   resp.write "Your cart is empty" if @@cart.empty
-    
-  elsif req.path.match(/add/)
-    req.params["q"]
-    resp.write "added #{@@items[0]}"
+
+  
+  end
 
     resp.finish
   end
