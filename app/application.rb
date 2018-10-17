@@ -2,6 +2,7 @@ require 'pry'
 class Application
 
   @@items = ["Apples","Carrots","Pears"]
+  @@cart=[]
 
   def call(env)
     resp = Rack::Response.new
@@ -18,7 +19,7 @@ class Application
       @@cart.each do |cart|
         resp.write "#{cart}\n"
       end
-    elsif @@cart.empty?
+    elsif req.path.match(/cart/).empty?
       resp.write "Your cart is empty"
     else
       resp.write "Path Not Found"
