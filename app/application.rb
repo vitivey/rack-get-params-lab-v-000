@@ -31,7 +31,7 @@ class Application
       resp.write "Path Not Found"
     end
 
-  resp.write "Your cart is empty" if @@cart.empty
+  # resp.write "Your cart is empty" if @@cart.empty
 
     resp.finish
   end
