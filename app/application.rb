@@ -20,7 +20,7 @@ class Application
         resp.write "#{cart}\n"
       end
     elsif !req.path.match(/cart/)
-      "Your cart is empty"
+      resp.write "Your cart is empty"
     elsif req.path.match(/add/)
       req.params["q"]
       resp.write "added #{@@items[0]}"
